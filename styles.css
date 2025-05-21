@@ -25,6 +25,7 @@ body{
     border-radius: 10px;
     padding: 10px 70px 15px 15px;
     width: 66%;
+    max-width: 330px;
 }
 
 .formBox div{
@@ -63,6 +64,7 @@ body{
 .tableBox{
     margin: 25px 0;
     width: 100%;
+    max-width: 850px;
 }
 
 .tableBox tr{
