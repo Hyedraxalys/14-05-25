@@ -59,22 +59,22 @@ function addStudentToTable(student){
 tableBody.appendChild(row)
 }
 
-const averageDiv = document.getElementById("average")
+const averageDiv = document.getElementById("average");
 
 function calcularPromedio(){
   notas = []
   if (students.length ===0){
-      averageDiv.textContent="Promedio de Calificaciones: N/A"
+      averageDiv.textContent="Promedio de Calificaciones: N/A";
       return;
   }
   
   for (let alumno of students){
-      console.log(alumno)
-      notas.push(parseFloat(alumno.grade))
+      console.log(alumno);
+      notas.push(parseFloat(alumno.grade));
   }
   
   const suma = notas.reduce((acu, valorAct) => acu+ valorAct,0);
 
-  let promedio = suma/students.length
-  averageDiv.textContent=`Promedio de Calificaciones: ${promedio}` 
+  let promedio = suma/students.length;
+  averageDiv.textContent=`Promedio de Calificaciones: ${promedio}`
 }

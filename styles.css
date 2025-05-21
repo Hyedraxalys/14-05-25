@@ -1,11 +1,75 @@
 body{
-    text-align: center;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(252, 252, 252);
 }
 
-table{
-    margin: 0 auto;
+.promBox{
+    border: solid #1164ff;
+    margin: 20px 0 30px;
+    padding: 8px 65px;
+    background-color: rgba(150, 232, 255, 0.212);
 }
 
-.prom_box{
-    
+.promBox h3{
+    margin: 0;
+    color: #1164ff;
+    font-size:medium;
+}
+
+.formBox{
+    border: solid #1164ff;
+    border-radius: 10px;
+    padding: 10px 70px 15px 15px;
+    width: 66%;
+}
+
+.formBox div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.formBox label{
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.formBox input{
+    margin-left: 33px;
+    min-width: 0;
+    width: 100%;
+    min-height: 30px;
+    box-sizing: border-box;
+    border: 1px;
+    border-radius: 4px;
+    border-color: rgb(210, 210, 210);
+    border-style:solid;
+}
+
+.formBox button{
+    border: 0;
+    padding: 9px 15px 12px;
+    border-radius:3px;
+    background-color: #2d75fa;
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.tableBox{
+    margin: 25px 0;
+    width: 100%;
+}
+
+.tableBox tr{
+    text-align: left;
+}
+
+.tableBox thead{
+    background-color: rgb(238, 237, 237);
+    text-shadow: 0 0 0.5px #000;
 }

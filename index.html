@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Notas Asignatura Front-End</h2>
-    <div class="prom_box" id="average">Promedio general del curso : N/A</div>
-    <form id="studentForm" novalidate>
+    <h2>Seguimiento de Calificaciones de Estudiantes</h2>
+    <div class="promBox" id="average"><h3>Promedio de calificaciones: No Disponible</h3></div>
+    <form class="formBox" id="studentForm" novalidate>
         <div>
             <label for="name">Nombre:</label>
             <input type="text" id="name" required>
@@ -22,19 +22,19 @@
             <label for="grade">Nota:</label>
             <input type="number" id="grade" step="0.1" min="1" max="7" required>
         </div>
-        <button type="submit">Guardar</button>
+        <button type="submit">Agregar Estudiante</button>
     </form>  
-    <table id="studentTable" border="1" cellpadding="8" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Nombre </th>
-            <th>Apellido </th>
-            <th>Nota </th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--Contenido de la tabla-->
-    </tbody>
+    <table class="tableBox" id="studentTable" border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nombre </th>
+                <th>Apellido </th>
+                <th>Nota </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Contenido de la tabla-->
+        </tbody>
     </table>  
     <script src="script.js"></script>
 </body>
