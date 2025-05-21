@@ -18,12 +18,12 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
   let valid = true;
 
   if (!name) {
-    nameInput.setCustomValidity("Por favor, ingresa tu nombre.");
+    nameInput.setCustomValidity("Por favor, completa el campo 'Nombre'.");
     valid = false;
   }
 
   if (!lastName) {
-    lastNameInput.setCustomValidity("Por favor, ingresa tu apellido.");
+    lastNameInput.setCustomValidity("Por favor, completa el campo 'Apellido'.");
     valid = false;
   }
 
