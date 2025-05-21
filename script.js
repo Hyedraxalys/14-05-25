@@ -9,7 +9,7 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
 
   const name = nameInput.value.trim();
   const lastName = lastNameInput.value.trim();
-  const grade = parseFloat(gradeInput.value).toFixed(1);
+  const grade = parseFloat(gradeInput.value).toFixed(2);
 
   nameInput.setCustomValidity("");
   lastNameInput.setCustomValidity("");
@@ -76,5 +76,5 @@ function calcularPromedio(){
   const suma = notas.reduce((acu, valorAct) => acu+ valorAct,0);
 
   let promedio = suma/students.length;
-  averageDiv.textContent=`Promedio de Calificaciones: ${promedio.toFixed(1)}`
+  averageDiv.textContent=`Promedio de Calificaciones: ${promedio.toFixed(2)}`
 }
