@@ -43,7 +43,7 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
   const student = { name, lastName, grade };
   students.push(student);
   addStudentToTable(student);
-  calcularPromedio();
+  
 
   this.reset();
 });
@@ -52,11 +52,21 @@ const tableBody=document.querySelector("#studentTable tbody");
 function addStudentToTable(student){
   const row=document.createElement("tr");
   row.innerHTML=`
-  <td>${student.name}</td>
-   <td>${student.lastName}</td>
+    <td>${student.name}</td>
+    <td>${student.lastName}</td>
     <td>${student.grade}</td>
+    <td>
+      <button class = "delete">Eliminar</button>
+      <button class = "modify">Modificar</button>
+    </td>
   `;
-tableBody.appendChild(row)
+
+  row.querySelector(".delete").addEventListener("click",function(){
+    deleteEstudiante(student,row);  
+  })
+
+  tableBody.appendChild(row);
+  calcularPromedio();
 }
 
 const averageDiv = document.getElementById("average");
@@ -64,17 +74,25 @@ const averageDiv = document.getElementById("average");
 function calcularPromedio(){
   notas = []
   if (students.length ===0){
-      averageDiv.textContent="Promedio de Calificaciones: N/A";
-      return;
+    averageDiv.textContent="Promedio de Calificaciones: N/A";
+    return;
   }
   
   for (let alumno of students){
-      console.log(alumno);
-      notas.push(parseFloat(alumno.grade));
+    notas.push(parseFloat(alumno.grade));
   }
   
   const suma = notas.reduce((acu, valorAct) => acu+ valorAct,0);
 
-  let promedio = suma/students.length;
-  averageDiv.textContent=`Promedio de Calificaciones: ${promedio.toFixed(2)}`
+  var promedio = suma/students.length;
+  document.querySelector("#average h3").textContent=`Promedio de Calificaciones: ${promedio.toFixed(2)}`
+}
+
+function deleteEstudiante(student,row){
+  const index = students.indexOf(student);
+  if(index > -1){
+    students.splice(index,1);
+    row.remove();
+    calcularPromedio()
+  }
 }
