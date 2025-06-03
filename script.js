@@ -41,29 +41,50 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
   }
 
   const student = { name, lastName, grade };
-  students.push(student);
-  addStudentToTable(student);
-  
+
+  if (editIndex !== null) {
+    students[editIndex] = student;
+
+    const row = tableBody.rows[editIndex];
+    row.cells[0].textContent = student.name;
+    row.cells[1].textContent = student.lastName;
+    row.cells[2].textContent = student.grade;
+
+    editIndex = null; 
+  }
+  else {
+    students.push(student);
+    addStudentToTable(student, students.length - 1);
+
+    this.reset()
+  }
 
   this.reset();
+  editIndex = null;
 });
 
 const tableBody=document.querySelector("#studentTable tbody");
-function addStudentToTable(student){
-  const row=document.createElement("tr");
-  row.innerHTML=`
+function addStudentToTable(student, index = students.length - 1) {
+  const row = document.createElement("tr");
+  row.dataset.index = index;
+
+  row.innerHTML = `
     <td>${student.name}</td>
     <td>${student.lastName}</td>
     <td>${student.grade}</td>
     <td>
-      <button class = "delete">Eliminar</button>
-      <button class = "modify">Modificar</button>
-    </td>
-  `;
+      <button class="delete">Eliminar</button>
+      <button class="modify">Modificar</button>
+    </td>`
+  ;
 
-  row.querySelector(".delete").addEventListener("click",function(){
-    deleteEstudiante(student,row);  
-  })
+  row.querySelector(".delete").addEventListener("click", function () {
+    deleteEstudiante(index, row);
+  });
+
+  row.querySelector(".modify").addEventListener("click", function () {
+    modifyStudent(index);
+  });
 
   tableBody.appendChild(row);
   calcularPromedio();
@@ -88,11 +109,21 @@ function calcularPromedio(){
   document.querySelector("#average h3").textContent=`Promedio de Calificaciones: ${promedio.toFixed(2)}`
 }
 
-function deleteEstudiante(student,row){
-  const index = students.indexOf(student);
-  if(index > -1){
-    students.splice(index,1);
+function deleteEstudiante(index, row) {
+  if (index > -1) {
+    students.splice(index, 1);
     row.remove();
-    calcularPromedio()
+    calcularPromedio();
   }
+}
+
+let editIndex = null;
+
+function modifyStudent(index) {
+  const student = students[index];
+  document.getElementById("name").value = student.name;
+  document.getElementById("lastName").value = student.lastName;
+  document.getElementById("grade").value = student.grade;
+
+  editIndex = index;
 }
