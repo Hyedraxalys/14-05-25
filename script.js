@@ -55,11 +55,12 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
   else {
     students.push(student);
     addStudentToTable(student, students.length - 1);
-
-    this.reset()
   }
 
   this.reset();
+  calcularPromedio();
+  totalStudents();
+  studentsToExam();
   editIndex = null;
 });
 
@@ -95,7 +96,7 @@ const averageDiv = document.getElementById("average");
 function calcularPromedio(){
   notas = []
   if (students.length ===0){
-    averageDiv.textContent="Promedio de Calificaciones: N/A";
+    document.querySelector("#average h3").textContent=`Promedio de Calificaciones: No Disponible`
     return;
   }
   
@@ -109,11 +110,50 @@ function calcularPromedio(){
   document.querySelector("#average h3").textContent=`Promedio de Calificaciones: ${promedio.toFixed(2)}`
 }
 
+function totalStudents(){
+  total = students.length
+  if (total ===0){
+    document.querySelector("#total h3").textContent=`Total Estudiantes: No Disponible`
+    return;
+  }
+  document.querySelector("#total h3").textContent=`Total Estudiantes: ${total}`
+};
+
+function studentsToExam(){
+  notas = []
+  numStudentsToExam = 0
+  numStudentsOk = 0
+
+  if (students.length ===0){
+    document.querySelector("#exam h3").textContent=`Estudiantes que rinden examen: No Disponible`
+    document.querySelector("#ok h3").textContent=`Estudiantes eximidos: No Disponible`
+    return;
+  }
+  
+  for (let alumno of students){
+    notas.push(parseFloat(alumno.grade));
+  }
+
+  for (let grade of notas){
+    if(grade < 5){
+      numStudentsToExam += 1
+    }
+    else{
+      numStudentsOk += 1
+    }
+  }
+
+  document.querySelector("#exam h3").textContent=`Estudiantes que rinden examen: ${numStudentsToExam}`
+  document.querySelector("#ok h3").textContent=`Estudiantes eximidos: ${numStudentsOk}`
+};
+
 function deleteEstudiante(index, row) {
   if (index > -1) {
     students.splice(index, 1);
     row.remove();
     calcularPromedio();
+    totalStudents();
+    studentsToExam();
   }
 }
 
